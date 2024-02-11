@@ -55,6 +55,7 @@ const Register = () => {
         user,
         token
       );
+      router.push("/OnBoarding");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

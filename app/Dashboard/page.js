@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const Page = () => {
   const [roomNames, setRoomNames] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState([]);
   const router = useRouter();
@@ -20,6 +20,7 @@ const Page = () => {
       setLoading(true);
       router.push("/Login");
     }
+    console.log(currentUser);
   });
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const Page = () => {
         console.log("No such user!");
       }
     };
+
     fetchUser();
   }, []);
 

@@ -12,7 +12,7 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 
 const CreateRoomPage = () => {
   const [roomName, setRoomName] = useState("");
-  const [cookies] = useCookies(["user"]);
+
   // const [roomCookie, setRoomCookie] = useCookies(["roomInfo"]);
   const [u, setU] = useState(false);
 

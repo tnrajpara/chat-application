@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import Register from "../app/Register/page";
+import Register from "./Register/page";
 // import { onAuthStateChanged } from "firebase/auth";
 // import { auth } from "./firebase";
 // import { UserAuth } from "./contexts/userAuth";
-import Dashboard from "../app/Dashboard/page";
+import Dashboard from "./Dashboard/page";
+
 import { AuthContext } from "./context/AuthContext";
 
 const Page = () => {

@@ -23,7 +23,6 @@ import { update } from "firebase/database";
 const ChatPage = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
-  const [cookies, setCookie] = useCookies(["user"]);
   const [user, setUser] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
   const [showDelete, setShowDelete] = useState(
@@ -159,7 +158,7 @@ const ChatPage = () => {
       </div>
 
       <div className="flex-grow p-4 overflow-y-auto">
-        <div id="chatMessages" className="grid grid-cols-1 gap-y-4">
+        <div>
           {chatMessages.map((chat) => (
             <div
               key={chat.id}
