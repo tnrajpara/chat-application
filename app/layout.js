@@ -1,9 +1,9 @@
 import "./globals.css";
-import { Exo_2, PT_Sans, Work_Sans } from "next/font/google";
+import { Libre_Franklin } from "next/font/google";
 import { AuthProvider } from "./context/AuthContext";
 import { UserProvider } from "./context/UserContext";
 
-const inter = Work_Sans({ subsets: ["latin"] });
+const inter = Libre_Franklin({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Chat Application",
