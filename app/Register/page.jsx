@@ -27,7 +27,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (password === confirmPassword && password.length >= 6) {
         const user = await createUser(email, password);
@@ -59,18 +58,18 @@ const Register = () => {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
       const email = error.customData.email;
-      // The AuthCredential type that was used.
+
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(errorCode, errorMessage, email);
+      console.log(credential);
     }
   };
 
   return (
-    <div className=" bg-white text-black h-screen w-screen justify-center items-center ">
+    <div className=" bg-white text-black h-screen w-screen justify-center items-center">
       <form
-        className="flex flex-col  xl:flex-row items-center justify-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black border-b-[1rem] border-b-gray-800  border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10 my-10"
+        className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black   border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
         onSubmit={handleSubmit}
       >
         <img src="/register.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />

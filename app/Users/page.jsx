@@ -7,24 +7,14 @@ import {
   orderBy,
   startAfter,
   limit,
-  setDoc,
-  arrayUnion,
-  doc,
-  onSnapshot,
-  getDoc,
-  where,
-  updateDoc,
-  serverTimestamp,
-  Timestamp,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
-import { IoMdArrowDropdown } from "react-icons/io";
-import Link from "next/link";
 import { UserContext } from "../context/UserContext";
-import { MdMessage } from "react-icons/md";
+import { CiChat2 } from "react-icons/ci";
+import Link from "next/link";
 
 const Page = () => {
   const [search, setSearch] = useState("");
@@ -95,7 +85,7 @@ const Page = () => {
           />
         </div>
 
-        <div className="flex flex-col w-11/12">
+        <div className="flex flex-col w-1/2 h-1/2">
           <div className="space-y-1">
             {filteredUsers.map((user) => {
               if (
@@ -107,14 +97,14 @@ const Page = () => {
 
               return (
                 <div
-                  key={user.id}
-                  className="flex justify-between rounded-lg px-3 py-2 w-11/12 mx-auto border border-black items-end "
+                  key={user.uid}
+                  className="ml-5 w-1/4 border border-gray-500 "
                 >
-                  <div className="flex justify-end">
+                  <div className="flex flex-col ">
                     <img
                       src={user.image}
                       alt=""
-                      className="rounded-full w-16 h-16 object-cover border-2 border-gray-800"
+                      className="rounded-md w-24 h-24 object-cover"
                     />
                   </div>
                   <h1 className="text-lg font-bold text-center flex space-x-4 items-center">
@@ -124,9 +114,8 @@ const Page = () => {
                     <Link
                       href={`chats/${personal.uid}-${user.uid}`}
                       className="text-end"
-                      onClick={() => {}}
                     >
-                      <MdMessage className="text-2xl" type="submit" />
+                      <CiChat2 className="text-2xl" type="submit" />
                     </Link>
                   </h1>
                 </div>

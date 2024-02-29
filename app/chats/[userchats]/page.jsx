@@ -77,7 +77,6 @@ const Chats = () => {
     e.preventDefault();
     try {
       const chatRef = doc(firestore, "chats", `${sender}-${receiver}`);
-
       const chatSnap = await getDoc(chatRef);
 
       const newMessage = {

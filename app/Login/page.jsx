@@ -65,13 +65,13 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-white text-black h-screen w-screen justify-center items-center">
+      <div className=" bg-white text-black h-screen w-screen justify-center items-center">
         <form
-          className="flex items-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black border-b-[1rem] border-b-gray-800  border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10 my-10"
+          className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black   border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
           onSubmit={handleSubmit}
         >
           <img src="/login.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />
-          <div className="flex flex-col w-1/2">
+          <div className="flex flex-col ">
             <h1 className="text-5xl font-bold mb-10 font-cal text-center">
               Login
             </h1>
