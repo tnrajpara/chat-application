@@ -10,24 +10,19 @@ import { storage, firestore } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useUserInfo } from "../context/UserInfo";
 
 const Onboarding = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
-  const [cookie, setCookie] = useCookies(["user"]);
-  const [u, setU] = useState(false);
-  const [uid, setUid] = useState();
+
+  const { setUserInfo } = useUserInfo();
   const [dob, setDob] = useState();
 
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!user.user) {
-  //     router.push("/Login");
-  //   }
-  // });
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -38,14 +33,6 @@ const Onboarding = () => {
   });
 
   const handleSubmit = async (e) => {
-    // const obj = {
-    //   uid: auth.currentUser.uid,
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   bio: bio,
-    //   image: image,
-    // };
-
     e.preventDefault();
     const date = new Date().getTime();
     if (image) {
@@ -61,9 +48,20 @@ const Onboarding = () => {
               bio,
               image: downloadUrl,
               dob,
-            }).then(() => {
-              router.push("/CreateRoom");
-            });
+            })
+              .then(() => {
+                setUserInfo({
+                  uid: auth.currentUser.uid,
+                  firstName,
+                  lastName,
+                  bio,
+                  image: downloadUrl,
+                  dob,
+                });
+              })
+              .then(() => {
+                router.push("/Dashboard");
+              });
           } catch (e) {
             console.error("onboarding.jsx while create user profile", e);
           }
@@ -71,20 +69,6 @@ const Onboarding = () => {
       });
     }
   };
-
-  // try {
-  //   const docRef = await addDoc(collection(firestore, "users"), obj);
-  //   console.log("Document written with ID: ", docRef.id);
-  //   setCookie("user", {
-  //     uid: uid,
-  //     firstName,
-  //     lastName,
-  //     bio,
-  //   });
-  //   router.push("/CreateRoom");
-  // } catch (error) {
-  //   console.error("Error while onboarding user:", error);
-  // }
 
   return (
     <div className="lg:h-screen lg:w-screen  py-5 h-screen w-screen">
@@ -151,7 +135,7 @@ const Onboarding = () => {
               <div className="flex justify-center items-center">
                 <img
                   src={URL.createObjectURL(image)}
-                  className="rounded-full w-24 h-24"
+                  className="rounded-md w-32 h-32 object-cover"
                   alt="not found"
                 />
               </div>

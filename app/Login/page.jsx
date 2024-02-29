@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
+import { signInWithPopup } from "firebase/auth";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -49,6 +51,7 @@ const Login = () => {
         user,
         token
       );
+      router.push("/OnBoarding");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

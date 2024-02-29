@@ -26,11 +26,11 @@ const UserProfile = () => {
 
   // Render user details
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-900 text-white">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 font-cal bg-[#f4f4f4]">
       {user ? (
-        <div className="p-6 text-white shadow-md rounded-lg bg-gray-800 ">
+        <div className="p-6  border border-gray-900 rounded-lg  ">
           <img
-            className="w-24 h-24 mb-4 rounded-full mx-auto"
+            className="w-20 h-20 mb-4 rounded-md object-cover mx-auto"
             src={user.image}
             alt={`${user.firstName} ${user.lastName}`}
           />

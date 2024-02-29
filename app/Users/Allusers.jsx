@@ -77,7 +77,7 @@ const AllUsers = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <div className="">
           {filteredUsers.map((user) => {
             if (

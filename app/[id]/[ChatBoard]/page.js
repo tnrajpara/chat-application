@@ -18,22 +18,15 @@ import { useRouter } from "next/navigation";
 import { FaHome } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import Link from "next/link";
-import { update } from "firebase/database";
 
 const ChatPage = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
-  const [user, setUser] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
-  const [showDelete, setShowDelete] = useState(
-    Array(chatMessages.length).fill(false)
-  );
+
   const { currentUser } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
   const roomName = useParams().ChatBoard.toString();
-
-  const [userId, setUserId] = useState(null);
   const [createdBy, setCreatedBy] = useState(null);
 
   useEffect(() => {
@@ -88,7 +81,6 @@ const ChatPage = () => {
       return;
     }
     if (inputMessage.trim() !== "") {
-      setInputMessage("");
       const userRef = doc(firestore, "users", currentUser.uid);
       const userSnap = await getDoc(userRef);
 
@@ -110,6 +102,7 @@ const ChatPage = () => {
             users: arrayUnion(userRef.id),
           });
 
+          setInputMessage("");
           console.log("Message sent");
         } catch (err) {
           console.error("Error sending message:", err);
@@ -183,14 +176,7 @@ const ChatPage = () => {
               >
                 {chat.message}
               </h1>
-              {showDelete[chat.id] && (
-                <MdDelete
-                  className="ml-2 text-red-500 cursor-pointer"
-                  onClick={() => {
-                    removeMessage(chat.id);
-                  }}
-                />
-              )}
+
               <Link
                 href={`/profile/${chat.sender.replace(/\s+/g, "-")}/${
                   chat.uid

@@ -121,10 +121,10 @@ const Page = () => {
                     <div className="text-right first-letter:capitalize">
                       {user.firstName} {user.lastName}
                     </div>
-
                     <Link
                       href={`chats/${personal.uid}-${user.uid}`}
                       className="text-end"
+                      onClick={() => {}}
                     >
                       <MdMessage className="text-2xl" type="submit" />
                     </Link>

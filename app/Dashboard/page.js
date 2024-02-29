@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ImProfile } from "react-icons/im";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useUserInfo } from "../context/UserInfo";
 
 const Page = () => {
   const [roomNames, setRoomNames] = useState([]);
@@ -14,13 +15,19 @@ const Page = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState([]);
   const router = useRouter();
+  const { userInfo } = useUserInfo();
 
   useEffect(() => {
     if (!currentUser) {
       setLoading(true);
       router.push("/Login");
     }
+    if (!userInfo) {
+      setLoading(true);
+      router.push("/OnBoarding");
+    }
     console.log(currentUser);
+    console.log(userInfo);
   });
 
   useEffect(() => {
@@ -43,12 +50,11 @@ const Page = () => {
         console.log("No such user!");
       }
     };
-
     fetchUser();
   }, []);
 
   return (
-    <div className="px-5 py-7 lg:h-screen lg:w-screen bg-[#f4f4f4] font-cal">
+    <div className="px-5 py-7 lg:h-screen h-screen lg:w-screen bg-[#f4f4f4] font-cal">
       {!user && (
         <div className="flex items-center justify-center h-screen">
           <div class="animate-pulse flex space-x-4">
@@ -76,12 +82,12 @@ const Page = () => {
           <img
             src={user.image}
             alt="Not Found"
-            className="w-12 h-12 rounded-full cursor-pointer"
+            className="w-12 h-12 rounded-md object-cover cursor-pointer"
           />
         </Link>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0 lg:space-x-2 lg:mb-10">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:mt-5 space-y-4 lg:space-y-0 lg:space-x-2 lg:mb-10">
         <div
           className=" lg:flex-row space-y-4 lg:space-y-0 lg:space-x-5 shadow-fill active:shadow-input-shrink flex
          w-full overflow-hidden rounded-[32px] border-[2px] border-black bg-gray-50 leading-[26px] transition-all duration-150 ease-in-out will-change-transform active:translate-y-[2px] active:duration-100 md:h-[90px] border-b-8 border-b-gray-900 justify-center "

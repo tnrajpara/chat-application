@@ -2,6 +2,7 @@ import "./globals.css";
 import { Libre_Franklin } from "next/font/google";
 import { AuthProvider } from "./context/AuthContext";
 import { UserProvider } from "./context/UserContext";
+import { UserInfoProvider } from "./context/UserInfo";
 
 const inter = Libre_Franklin({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <UserProvider>{children}</UserProvider>
+          <UserProvider>
+            <UserInfoProvider>{children}</UserInfoProvider>
+          </UserProvider>
         </AuthProvider>
       </body>
     </html>

@@ -28,6 +28,8 @@ export function UserProvider({ children }) {
             setPersonal(userSnap.data());
             setPending(false);
           } else {
+            router.push("/Login");
+            setPending(false);
             console.log("No such user!");
           }
         } catch (err) {
