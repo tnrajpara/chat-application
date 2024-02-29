@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { FaImage } from "react-icons/fa";
 import { doc, setDoc } from "firebase/firestore";
-import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
 import { storage, firestore } from "../firebase";
@@ -11,12 +10,15 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useUserInfo } from "../context/UserInfo";
+import { collection, getDocs } from "firebase/firestore";
 
 const Onboarding = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
+  const [existingUser, setExistingUser] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const { setUserInfo } = useUserInfo();
   const [dob, setDob] = useState();
@@ -30,6 +32,20 @@ const Onboarding = () => {
       setLoading(true);
       router.push("/Login");
     }
+  });
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersRef = collection(firestore, "users");
+      const usersSnapshot = await getDocs(usersRef);
+      const usersList = usersSnapshot.docs.map((doc) => doc.data());
+      const user = usersList.find((user) => user.uid === currentUser.uid);
+      if (user) {
+        setExistingUser(true);
+        router.push("/Dashboard");
+      }
+    };
+    fetchUsers();
   });
 
   const handleSubmit = async (e) => {
