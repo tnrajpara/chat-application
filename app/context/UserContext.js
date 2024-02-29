@@ -25,6 +25,7 @@ export function UserProvider({ children }) {
           const userSnap = await getDoc(userRef);
 
           if (userSnap.exists()) {
+            console.log("Document data:", userSnap.data());
             setPersonal(userSnap.data());
             setPending(false);
           } else {

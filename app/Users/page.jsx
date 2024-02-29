@@ -58,6 +58,7 @@ const Page = () => {
     if (!currentUser) {
       router.push("/Login");
     }
+
     fetchUsers();
   });
 
@@ -85,7 +86,7 @@ const Page = () => {
           />
         </div>
 
-        <div className="flex flex-col w-1/2 h-1/2">
+        <div className="flex flex-col w-screen  lg:w-full h-full ">
           <div className="space-y-1">
             {filteredUsers.map((user) => {
               if (
@@ -98,7 +99,7 @@ const Page = () => {
               return (
                 <div
                   key={user.uid}
-                  className="ml-5 w-1/4 border border-gray-500 "
+                  className="ml-5 w-1/4 border border-gray-500 px-2 py-3 rounded-md "
                 >
                   <div className="flex flex-col ">
                     <img
@@ -107,8 +108,8 @@ const Page = () => {
                       className="rounded-md w-24 h-24 object-cover"
                     />
                   </div>
-                  <h1 className="text-lg font-bold text-center flex space-x-4 items-center">
-                    <div className="text-right first-letter:capitalize">
+                  <h1 className="text-lg font-bold  flex space-x-4 items-end justify-end ">
+                    <div className="text-right first-letter:capitalize text-sm">
                       {user.firstName} {user.lastName}
                     </div>
                     <Link

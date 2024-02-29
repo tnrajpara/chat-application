@@ -9,6 +9,8 @@ import { AuthContext } from "../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup } from "firebase/auth";
 import { UserContext } from "../context/UserContext";
+import { GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../firebase";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -55,14 +57,10 @@ const Login = () => {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(errorCode, errorMessage, email);
+
+      console.log(errorCode, errorMessage, username);
     }
   };
-
   return (
     <div>
       <div className=" bg-white text-black h-screen w-screen justify-center items-center">
