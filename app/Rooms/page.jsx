@@ -17,7 +17,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="mt-10 ml-10">
+    <div className="mt-10 ml-10 font-poppins">
       <div>
         <h1 className="text-4xl font-cal ">Rooms</h1>
       </div>

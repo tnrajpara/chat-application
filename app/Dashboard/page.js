@@ -93,7 +93,7 @@ const Page = () => {
   });
 
   return (
-    <div className="px-5 py-7  font-cal">
+    <div className="px-5 py-7 font-poppins">
       {!user && (
         <div className="flex items-center justify-center h-screen">
           <div class="animate-pulse flex space-x-4">

@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         cal: ["CalSans-Semibold", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },

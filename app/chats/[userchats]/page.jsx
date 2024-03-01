@@ -111,7 +111,7 @@ const Chats = () => {
     }
   };
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col h-screen justify-between font-poppins">
       <div className="bg-gray-100 text-black p-4 w-full flex justify-between items-center mx-auto">
         <Link href="/">
           <FaArrowLeft className="text-2xl float-left " />

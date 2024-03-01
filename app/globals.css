@@ -28,9 +28,11 @@ body {
 
 @font-face {
   font-family: "CalSans-Semibold";
-  src: url('/CalSans-Semibold.ttf') format('truetype'),
+  src: url('/fonts/CalSans-Semibold.ttf') format('truetype'),
 }
 
-*{
-  font-family: poppins;
+@font-face {
+  font-family: "poppins";
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
 }
+
