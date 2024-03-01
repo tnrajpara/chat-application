@@ -11,8 +11,9 @@ import {
 } from "firebase/firestore";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
+import { FaArrowAltCircleRight, FaArrowLeft } from "react-icons/fa";
 import { firestore } from "../../firebase";
+import Link from "next/link";
 
 const Chats = () => {
   const [inputMessage, setInputMessage] = useState("");
@@ -78,7 +79,6 @@ const Chats = () => {
     try {
       const chatRef = doc(firestore, "chats", `${sender}-${receiver}`);
       const chatSnap = await getDoc(chatRef);
-
       const newMessage = {
         message: inputMessage,
         sender: sender,
@@ -112,39 +112,41 @@ const Chats = () => {
   };
   return (
     <div className="flex flex-col h-screen justify-between">
-      <div className="">
-        <div className="bg-gray-50 text-black p-6 w-full">
-          <h1 className="text-xl first-letter:uppercase text-center">
-            {receiverData.firstName} {receiverData.lastName}
-          </h1>
-        </div>
-
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <div className="flex flex-col flex-grow overflow-y-scroll mt-2">
-            {chats.map((chat, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  chat.sender === sender ? "justify-end" : "justify-start"
-                } mb-2`}
-              >
-                <div
-                  className={`max-w-xs mx-2 p-2 rounded-lg ${
-                    chat.sender === sender
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
-                >
-                  {chat.message}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="bg-gray-100 text-black p-4 w-full flex justify-between items-center mx-auto">
+        <Link href="/">
+          <FaArrowLeft className="text-2xl float-left " />
+        </Link>
+        <h1 className="text-xl first-letter:uppercase text-center font-semibold">
+          {receiverData.firstName} {receiverData.lastName}
+        </h1>
       </div>
-      <div className="p-4 w-full">
+
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="flex flex-col flex-grow overflow-y-scroll mt-2">
+          {chats.map((chat, index) => (
+            <div
+              key={index}
+              className={`flex ${
+                chat.sender === sender ? "justify-end" : "justify-start"
+              } mb-2`}
+            >
+              <div
+                className={`max-w-xs mx-2 p-2 rounded-lg ${
+                  chat.sender === sender
+                    ? " text-[#f4f4f4] bg-black border-b-4 border-white border"
+                    : "bg-[#f4f4f4] text-black border-b-4 border-black border"
+                }`}
+              >
+                {chat.message}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="p-4 w-full fixed bottom-0">
         <form
           className="w-full flex border border-black"
           onSubmit={handleMessageSubmit}
@@ -159,9 +161,9 @@ const Chats = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 ml-2 border-b-4 border-b-gray-900 outline-4 border border-black bg-gray-800 text-gray-100 hover:cursor-pointer"
+            className="px-4 py-2 ml-2 border-l border-black hover:cursor-pointer"
           >
-            Send
+            <FaArrowAltCircleRight className="text-2xl " />
           </button>
         </form>
       </div>

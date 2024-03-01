@@ -30,3 +30,7 @@ body {
   font-family: "CalSans-Semibold";
   src: url('/CalSans-Semibold.ttf') format('truetype'),
 }
+
+*{
+  font-family: poppins;
+}
