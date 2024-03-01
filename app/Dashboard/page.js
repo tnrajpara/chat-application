@@ -224,7 +224,10 @@ const Page = () => {
             return null;
           }
           return (
-            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#2a2438] dark:border-gray-500 mt-7 ">
+            <div
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#2a2438] dark:border-gray-500 mt-7 "
+              key={user.uid}
+            >
               <div class="flex justify-end px-4 pt-4">
                 <button
                   id="dropdownButton"
