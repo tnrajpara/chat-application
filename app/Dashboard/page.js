@@ -162,9 +162,9 @@ const Page = () => {
               Create Room
             </button>
           </Link>
-          <Link className="text-center " href={`/Users`}>
+          <Link className="text-center " href={`/Rooms`}>
             <button className=" flex h-full place-items-center justify-center  mb-5 lg:mb-0 text-gray-900  pl-8 pr-3 md:min-w-[209px] md:px-0">
-              Chats
+              Rooms
             </button>
           </Link>
         </div>
