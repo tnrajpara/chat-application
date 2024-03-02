@@ -20,7 +20,6 @@ import { AuthContext } from "../context/AuthContext";
 import { useUserInfo } from "../context/UserInfo";
 import { CiSearch } from "react-icons/ci";
 import { UserContext } from "../context/UserContext";
-import { CiChat2 } from "react-icons/ci";
 
 const Page = () => {
   const { currentUser } = useContext(AuthContext);
@@ -225,7 +224,7 @@ const Page = () => {
           }
           return (
             <div
-              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#2a2438] dark:border-gray-500 mt-7 "
+              class="w-full max-w-sm  border  rounded-lg shadow bg-[#2a2438] border-gray-500 mt-7 "
               key={user.uid}
             >
               <div class="flex justify-end px-4 pt-4">
