@@ -26,7 +26,7 @@ const UserProfile = () => {
 
   // Render user details
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 font-cal bg-[#f4f4f4]">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 font-poppins bg-[#f4f4f4]">
       {user ? (
         <div className="p-6  border border-gray-900 rounded-lg  ">
           <img

@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { FaHome } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import Link from "next/link";
+import { IoSend } from "react-icons/io5";
 
 const ChatPage = () => {
   const [inputMessage, setInputMessage] = useState("");
@@ -49,9 +50,10 @@ const ChatPage = () => {
   useEffect(() => {
     if (!currentUser) {
       setLoading(true);
+
       router.push("/Login");
     } else {
-      console.log(currentUser.uid);
+      console.log("the current", currentUser.uid);
     }
   });
 
@@ -72,7 +74,7 @@ const ChatPage = () => {
       }
     });
     return () => unsubscribe();
-  }, [roomName]);
+  });
 
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
@@ -93,6 +95,7 @@ const ChatPage = () => {
           message: inputMessage,
           sender: firstName + " " + lastName,
           timeStamp: new Date().toLocaleString(),
+          viewdby: [currentUser.uid],
         };
 
         try {
@@ -113,28 +116,50 @@ const ChatPage = () => {
     }
   };
 
+  const markMessageAsViewed = async (messageId) => {
+    const roomRef = doc(firestore, `rooms/${roomName}`);
+    const roomSnap = await getDoc(roomRef);
+
+    if (roomSnap.exists()) {
+      const messages = roomSnap.data().messages;
+      const messageIndex = messages.findIndex((msg) => msg.id === messageId);
+
+      if (messageIndex !== -1) {
+        messages[messageIndex].viewedBy.push(currentUser.uid);
+
+        await updateDoc(roomRef, {
+          messages: messages,
+        });
+        console.log("Message marked as viewed");
+      } else {
+        console.log("No such message!");
+      }
+    } else {
+      console.log("No such room!");
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(roomRef, (snapshot) => {
+      chatMessages.forEach((msg) => {
+        if (!msg.viewedBy.includes(currentUser.uid)) {
+          markMessageAsViewed(msg.id);
+        }
+      });
+    });
+
+    return () => unsubscribe();
+  });
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleMessageSubmit(e);
     }
   };
 
-  const removeMessage = async (id) => {
-    try {
-      console.log(id);
-      // remove only message from array query
-      const roomRef = doc(firestore, `rooms/${roomName}`);
-      await updateDoc(roomRef, {
-        messages: arrayRemove(id),
-      });
-    } catch (err) {
-      console.error("Error removing message:", err);
-    }
-  };
-
   return (
-    <div className="bg-gray-50 text-black h-screen flex flex-col font-cal">
-      <div className="bg-[#e5e7eb] p-4 flex justify-between items-center space-x-2">
+    <div className="bg-gray-50 text-black h-screen flex flex-col font-poppins">
+      <div className="text-[#e5e7eb] bg-black p-4 flex justify-between items-center space-x-2">
         <h1 className="text-center font-bold text-2xl">ChatBoard</h1>
         <p className="font-semibold  text-2xl"> {roomName}</p>
 
@@ -156,53 +181,53 @@ const ChatPage = () => {
             <div
               key={chat.id}
               className={` h-12 flex items-center ${
-                createdBy === chat.uid
-                  ? "justify-self-start flex-row-reverse"
-                  : "justify-self-end"
+                chat.uid === currentUser.uid ? "justify-end" : "justify-start"
               }`}
             >
-              <h1
-                className={`${
-                  createdBy === chat.uid
-                    ? " px-4 py-2 rounded-md hover:cursor-pointer text-sm ml-2 mr-2 border-b-4 border-b-gray-900 text-gray-900 border border-black"
-                    : "px-4 py-2 rounded-md  text-sm ml-2 border-b-4 border-b-gray-900 text-gray-900 border border-black hover:cursor-pointer  mr-2"
-                }`}
-                onClick={() => {
-                  setShowDelete({
-                    ...showDelete,
-                    [chat.id]: !showDelete[chat.id],
-                  });
-                }}
-              >
-                {chat.message}
-              </h1>
-
-              <Link
-                href={`/profile/${chat.sender.replace(/\s+/g, "-")}/${
-                  chat.uid
-                }`}
-              >
-                <span className=" text-sm font-semibold">{chat.sender}</span>
-              </Link>
+              {currentUser.uid === chat.uid ? (
+                <></>
+              ) : (
+                <Link
+                  href={`/profile/${chat.sender.replace(/\s+/g, "-")}/${
+                    chat.uid
+                  }`}
+                >
+                  <span className="text-xs text-end">{chat.sender}</span>
+                </Link>
+              )}{" "}
+              <div className="flex flex-col">
+                <h1
+                  className={`${
+                    currentUser.uid === chat.uid
+                      ? " px-4 py-2 rounded-full hover:cursor-pointer text-sm ml-2 mr-2 border-b-4 border-b-gray-900 bg-gray-900 text-gray-50 border border-black"
+                      : "px-4 py-2 rounded-full  text-sm ml-2 border-b-4 border-b-gray-900 text-gray-900 border border-black hover:cursor-pointer  mr-2"
+                  }`}
+                >
+                  {chat.message}
+                </h1>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <div className="p-4 flex items-center">
-        <form className="w-full flex" onSubmit={() => handleMessageSubmit()}>
+      <div className="p-4 flex items-center rounded-full">
+        <form
+          className="w-full flex border border-gray-400 rounded-full"
+          onSubmit={() => handleMessageSubmit()}
+        >
           <input
             type="text"
             placeholder="Type your message..."
-            className="flex-grow  p-2 rounded-l-md outline-none border-black"
+            className="flex-grow  p-2 rounded-l-md   outline-none "
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyDown}
           />
           <button
             type="submit"
-            className=" px-4 py-2 rounded-md ml-2 border-b-4 border-b-gray-900 outline-4 border border-black bg-gray-800 text-gray-100 hover:cursor-pointer"
+            className=" px-4 py-2  ml-2 border-b-4 border-b-gray-900 outline-4 border border-black bg-gray-800 text-gray-100 hover:cursor-pointer"
           >
-            Send
+            <IoSend />
           </button>
         </form>
       </div>

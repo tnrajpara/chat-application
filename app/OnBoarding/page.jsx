@@ -18,7 +18,6 @@ const Onboarding = () => {
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
   const [existingUser, setExistingUser] = useState(false);
-  const [users, setUsers] = useState([]);
 
   const { setUserInfo } = useUserInfo();
   const [dob, setDob] = useState();
@@ -88,7 +87,7 @@ const Onboarding = () => {
 
   return (
     <div className="lg:h-screen lg:w-screen  py-5 h-screen w-screen">
-      <h1 className="text-center text-4xl mt-10 mb-10 font-cal">
+      <h1 className="text-center text-4xl mt-10 mb-10 font-poppins">
         Welcome to Our App!
       </h1>
 
@@ -100,21 +99,21 @@ const Onboarding = () => {
           <img src="/bg.jpg" className="lg:h-1/2 lg:w-1/2 " alt="not found" />
           <div className="flex flex-col w-3/4 h-1/2 leading-[27px] items-center place-items-center justify-center mx-auto lg:w-3/4">
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2 w-full placeholder:font-cal outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900 p-2 m-2 w-full placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               value={firstName}
               placeholder="First Name"
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2 w-full  placeholder:font-cal outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900 p-2 m-2 w-full  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900  p-2 m-2 w-full  placeholder:font-cal outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900  p-2 m-2 w-full  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               placeholder="Bio"
               value={bio}
@@ -126,7 +125,7 @@ const Onboarding = () => {
               id=""
               value={dob}
               onChange={(e) => setDob(e.target.value)}
-              className="border border-gray-900 rounded-lg p-2 m-2 w-full placeholder:font-cal outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border border-gray-900 rounded-lg p-2 m-2 w-full placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               placeholder="Date of Birth"
             />
 
@@ -158,7 +157,7 @@ const Onboarding = () => {
             )}
 
             <button
-              className="bg-black text-white w-full rounded-lg p-2 m-2 font-cal"
+              className="bg-black text-white w-full rounded-lg p-2 m-2 font-poppins"
               type="submit"
             >
               Let&apos;s Go

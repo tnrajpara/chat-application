@@ -19,7 +19,11 @@ export function AuthProvider({ children }) {
   }, []);
 
   if (pending) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-screen h-screen flex justify-center">
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 
   return (

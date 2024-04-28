@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { LiaRestroomSolid } from "react-icons/lia";
+import { PiChatsCircleFill } from "react-icons/pi";
 import Link from "next/link";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
@@ -26,7 +26,7 @@ const CreateRoomPage = () => {
       setLoading(true);
       router.push("/Login");
     }
-  });
+  }, []);
   // useEffect(() => {
   //   if (!user.user) {
   //     router.push("/OnBoarding");
@@ -61,14 +61,14 @@ const CreateRoomPage = () => {
   };
 
   return (
-    <div className=" bg-gray-50 flex text-gray-900 w-screen h-screen items-center justify-center flex-col space-y-5 font-cal ">
+    <div className=" bg-gray-50 flex text-gray-900 w-screen h-screen items-center justify-center flex-col space-y-5 font-poppins ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col space-y-6 border border-black px-3 py-5 rounded-lg items-center justify-center w-1/2 h-1/2 lg:text-xl"
+        className="flex flex-col space-y-6 border border-black px-3 py-5 rounded-lg items-center justify-center   lg:text-xl"
       >
-        <LiaRestroomSolid className="text-6xl" />
+        <PiChatsCircleFill className="text-6xl" />
 
-        <h1 className="text-4xl text-center">Create a Room</h1>
+        <h1 className="text-4xl text-center font-extrabold">Create a Room</h1>
         <div className="flex">
           <input
             type="text"

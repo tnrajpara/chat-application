@@ -11,9 +11,10 @@ import {
 } from "firebase/firestore";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { FaArrowAltCircleRight, FaArrowLeft } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 import { firestore } from "../../firebase";
 import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Chats = () => {
   const [inputMessage, setInputMessage] = useState("");
@@ -84,6 +85,7 @@ const Chats = () => {
         sender: sender,
         receiver: receiver,
         timestamp: Timestamp.now(),
+        viewedBy: [sender],
       };
 
       if (chatSnap.exists()) {
@@ -119,12 +121,13 @@ const Chats = () => {
         <h1 className="text-xl first-letter:uppercase text-center font-semibold">
           {receiverData.firstName} {receiverData.lastName}
         </h1>
+        <div className="text-2xl float-right " />
       </div>
 
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex flex-col flex-grow overflow-y-scroll mt-2">
+        <div className="flex flex-col flex-grow overflow-y-scroll mt-2 justify-start">
           {chats.map((chat, index) => (
             <div
               key={index}
@@ -133,20 +136,20 @@ const Chats = () => {
               } mb-2`}
             >
               <div
-                className={`max-w-xs mx-2 p-2 rounded-lg ${
+                className={`max-w-xs mx-2 lg:px-6 px-4 py-2  ${
                   chat.sender === sender
-                    ? " text-[#f4f4f4] bg-black border-b-4 border-white border"
-                    : "bg-[#f4f4f4] text-black border-b-4 border-black border"
+                    ? " text-[#f4f4f4] bg-black border-b-4 border-white border rounded-full"
+                    : "bg-[#f4f4f4] text-black border-b-4 border-black border rounded-full"
                 }`}
               >
-                {chat.message}
+                <p className="text-left"> {chat.message}</p>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      <div className="p-4 w-full fixed bottom-0">
+      <div className="px-2 py-2 w-full fixed bottom-0">
         <form
           className="w-full flex border border-black"
           onSubmit={handleMessageSubmit}
@@ -159,11 +162,12 @@ const Chats = () => {
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyDown}
           />
+
           <button
             type="submit"
-            className="px-4 py-2 ml-2 border-l border-black hover:cursor-pointer"
+            className="px-4 py-2  ml-2 border-b-4 border-b-gray-900 outline-4 border border-black bg-gray-800 text-gray-100 hover:cursor-pointer"
           >
-            <FaArrowAltCircleRight className="text-2xl " />
+            <IoSend className="text-2xl " />
           </button>
         </form>
       </div>

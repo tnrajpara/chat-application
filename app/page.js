@@ -5,7 +5,6 @@ import Register from "./Register/page";
 // import { auth } from "./firebase";
 // import { UserAuth } from "./contexts/userAuth";
 import Dashboard from "./Dashboard/page";
-
 import { AuthContext } from "./context/AuthContext";
 
 const Page = () => {

@@ -19,10 +19,10 @@ const Page = () => {
   return (
     <div className="mt-10 ml-10 font-poppins">
       <div>
-        <h1 className="text-4xl font-cal ">Rooms</h1>
+        <h1 className="text-4xl font-poppins ">Rooms</h1>
       </div>
       {rooms.length === 0 && (
-        <p className="text-2xl font-cal mt-5">No rooms Available!</p>
+        <p className="text-2xl font-poppins mt-5">No rooms Available!</p>
       )}
       <ul className="flex flex-wrap justify-center space-x-5 mt-10">
         {rooms.map((roomName, index) => (

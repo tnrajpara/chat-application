@@ -73,36 +73,36 @@ const Register = () => {
       >
         <img src="/register.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />
         <div className="flex flex-col w-full">
-          <h1 className="text-5xl font-bold mb-10 font-cal">Register</h1>
+          <h1 className="text-5xl font-bold mb-10 font-poppins">Register</h1>
           <input
-            className="border border-black rounded-lg outline-none active:border active:border-gray-800 p-2 m-2 w-full placeholder:font-cal"
+            className="border border-black rounded-lg outline-none active:border active:border-gray-800 p-2 m-2 w-full placeholder:font-poppins"
             type="text"
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="border border-black rounded-lg p-2 m-2 ouline-none active:border active:border-gray-800 w-full placeholder:font-cal"
+            className="border border-black rounded-lg p-2 m-2 ouline-none active:border active:border-gray-800 w-full placeholder:font-poppins"
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            className="border border-black rounded-lg p-2 m-2 outline-none active:border active:border-gray-800 w-full placeholder:font-cal"
+            className="border border-black rounded-lg p-2 m-2 outline-none active:border active:border-gray-800 w-full placeholder:font-poppins"
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button
-            className=" bg-black text-white rounded-lg p-2 m-2 w-full font-cal"
+            className=" bg-black text-white rounded-lg p-2 m-2 w-full font-poppins"
             type="submit"
           >
             Register
           </button>
           <button
-            className="flex font-cal justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
+            className="flex font-poppins justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
             onClick={() => {
               signWithPop();
             }}
@@ -119,7 +119,7 @@ const Register = () => {
           )}
           <Link
             href="/Login"
-            className="text-lg text-center font-cal underline rounded-lg p-2 m-2 "
+            className="text-lg text-center font-poppins underline rounded-lg p-2 m-2 "
           >
             Login
           </Link>
