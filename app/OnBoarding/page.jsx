@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import { FaImage } from "react-icons/fa";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -17,7 +16,6 @@ const Onboarding = () => {
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
-  const [existingUser, setExistingUser] = useState(false);
 
   const { setUserInfo } = useUserInfo();
   const [dob, setDob] = useState();
@@ -40,7 +38,6 @@ const Onboarding = () => {
       const usersList = usersSnapshot.docs.map((doc) => doc.data());
       const user = usersList.find((user) => user.uid === currentUser.uid);
       if (user) {
-        setExistingUser(true);
         router.push("/Dashboard");
       }
     };
@@ -86,34 +83,33 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="lg:h-screen lg:w-screen  py-5 h-screen w-screen">
+    <div className="lg:h-screen lg:w-screen py-5 h-screen w-screen">
       <h1 className="text-center text-4xl mt-10 mb-10 font-poppins">
         Welcome to Our App!
       </h1>
 
-      <div className="flex items-center justify-between md:space-x-10 flex-col lg:flex-row  space-y-7">
+      <div className="flex items-center justify-center md:space-x-10 flex-col lg:flex-row space-y-7 ">
         <form
-          className="flex flex-col xl:flex-row  rounded-lg py-5 px-4"
+          className="flex flex-col xl:flex-row rounded-lg py-5 px-4 w-11/12 xl:w-1/2  shadow-lg border border-gray-900 font-poppins"
           onSubmit={handleSubmit}
         >
-          <img src="/bg.jpg" className="lg:h-1/2 lg:w-1/2 " alt="not found" />
-          <div className="flex flex-col w-3/4 h-1/2 leading-[27px] items-center place-items-center justify-center mx-auto lg:w-3/4">
+          <div className="flex flex-col  leading-[27px] items-center mx-auto ">
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2 w-full placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900 p-2 m-2  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               value={firstName}
               placeholder="First Name"
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2 w-full  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900 p-2 m-2   placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900  p-2 m-2 w-full  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="border-b-2 border-b-gray-900  p-2 m-2  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
               type="text"
               placeholder="Bio"
               value={bio}
@@ -140,7 +136,7 @@ const Onboarding = () => {
                 type="file"
                 className="hidden"
                 onChange={(e) => setImage(e.target.files[0])}
-                accept="image/jpeg, image/png, image/jpg, image/gif, image/svg"
+                accept="image/jpeg, image/png, image/jpg, image/gif, image/svg ,image/webp"
               />
             </label>
 

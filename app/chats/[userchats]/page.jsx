@@ -85,7 +85,6 @@ const Chats = () => {
         sender: sender,
         receiver: receiver,
         timestamp: Timestamp.now(),
-        viewedBy: [sender],
       };
 
       if (chatSnap.exists()) {
@@ -157,7 +156,7 @@ const Chats = () => {
           <input
             type="text"
             placeholder="Type your message..."
-            className="flex-grow p-2 rounded-l-md outline-none border-black"
+            className="flex-grow p-2  outline-none border-black"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyDown}

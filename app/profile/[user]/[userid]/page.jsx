@@ -38,6 +38,7 @@ const UserProfile = () => {
             {user.firstName} {user.lastName}
           </h1>
           <p className="text-center mt-2">{user.bio}</p>
+          <button className="bg-red-500">Logout</button>
         </div>
       ) : (
         <p>Loading...</p>

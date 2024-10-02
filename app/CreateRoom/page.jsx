@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { updateDoc, doc, arrayUnion, setDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
-import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";

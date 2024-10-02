@@ -21,6 +21,7 @@ import { CiSearch } from "react-icons/ci";
 import { UserContext } from "../context/UserContext";
 import { IoMdClose } from "react-icons/io";
 import Users from "./Users";
+import { signOut } from "../config";
 
 export default function Dashboard() {
   const { currentUser } = useContext(AuthContext);
@@ -33,6 +34,7 @@ export default function Dashboard() {
   const { personal } = useContext(UserContext);
   const [showProfile, setShowProfile] = useState(false);
   const [userProfile, setUserProfile] = useState({});
+  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!currentUser) {
@@ -43,7 +45,7 @@ export default function Dashboard() {
       setLoading(true);
       router.push("/OnBoarding");
     }
-  });
+  }, []);
 
   const fetchUsers = async () => {
     const col = collection(firestore, "users");
@@ -110,8 +112,8 @@ export default function Dashboard() {
     <div
       className={
         users.length <= 3
-          ? "px-5 py-7 font-poppins  h-screen"
-          : "px-5 py-7 font-poppins "
+          ? "px-5 py-7 font-poppins  h-screen mb-5"
+          : "px-5 py-7 font-poppins mb-5"
       }
     >
       {!user && (
@@ -168,6 +170,14 @@ export default function Dashboard() {
                           {userProfile.firstName} {userProfile.lastName}
                         </h3>
                         <p class="text-indigo-300">{userProfile.bio}</p>
+                        <button
+                          className="bg-red-500 text-white  px-2 py-2"
+                          onClick={() => {
+                            signOut();
+                          }}
+                        >
+                          Logout
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -223,9 +233,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="flex md:flex-row flex-col col-span-3 row-span-3 justify-center items-center space-x-5  lg:justify-start lg:items-start">
-        <Users users={filteredUsers} personal={personal} />
-      </div>
+      <Users users={filteredUsers} personal={personal} />
     </div>
   );
 }

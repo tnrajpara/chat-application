@@ -95,7 +95,7 @@ const ChatPage = () => {
           message: inputMessage,
           sender: firstName + " " + lastName,
           timeStamp: new Date().toLocaleString(),
-          viewdby: [currentUser.uid],
+          
         };
 
         try {
@@ -116,41 +116,7 @@ const ChatPage = () => {
     }
   };
 
-  const markMessageAsViewed = async (messageId) => {
-    const roomRef = doc(firestore, `rooms/${roomName}`);
-    const roomSnap = await getDoc(roomRef);
-
-    if (roomSnap.exists()) {
-      const messages = roomSnap.data().messages;
-      const messageIndex = messages.findIndex((msg) => msg.id === messageId);
-
-      if (messageIndex !== -1) {
-        messages[messageIndex].viewedBy.push(currentUser.uid);
-
-        await updateDoc(roomRef, {
-          messages: messages,
-        });
-        console.log("Message marked as viewed");
-      } else {
-        console.log("No such message!");
-      }
-    } else {
-      console.log("No such room!");
-    }
-  };
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(roomRef, (snapshot) => {
-      chatMessages.forEach((msg) => {
-        if (!msg.viewedBy.includes(currentUser.uid)) {
-          markMessageAsViewed(msg.id);
-        }
-      });
-    });
-
-    return () => unsubscribe();
-  });
-
+ 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleMessageSubmit(e);

@@ -70,18 +70,18 @@ const Login = () => {
         >
           <img src="/login.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />
           <div className="flex flex-col ">
-            <h1 className="text-5xl font-bold mb-10 font-cal text-center">
+            <h1 className="text-5xl font-bold mb-10 font-poppins text-center">
               Login
             </h1>
             <input
-              className=" rounded-lg p-2 m-2 w-full border border-black placeholder:font-cal"
+              className=" rounded-lg p-2 m-2 w-full border border-black placeholder:font-poppins"
               type="text"
               value={username}
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
-              className="rounded-lg p-2 m-2 w-full border border-black placeholder:font-cal"
+              className="rounded-lg p-2 m-2 w-full border border-black placeholder:font-poppins"
               type="password"
               placeholder="Password"
               value={password}
@@ -89,13 +89,13 @@ const Login = () => {
             />
 
             <button
-              className="font-cal rounded-lg p-2 m-2 w-full text-center bg-black text-white"
+              className="font-poppins rounded-lg p-2 m-2 w-full text-center bg-black text-white"
               type="submit"
             >
               Login
             </button>
             <button
-              className="flex font-cal justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
+              className="flex font-poppins justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
               onClick={() => {
                 signWithPop();
               }}
@@ -105,12 +105,12 @@ const Login = () => {
             </button>
             <Link
               href={"/Register"}
-              className="underline w-full text-center text-gray-900 font-cal"
+              className="underline w-full text-center text-gray-900 font-poppins"
             >
               Register
             </Link>
 
-            <Link href={"/ResetPassword"} className="text-center font-cal">
+            <Link href={"/ResetPassword"} className="text-center font-poppins">
               Forgot password ?
             </Link>
           </div>
