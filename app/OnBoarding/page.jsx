@@ -16,6 +16,7 @@ const Onboarding = () => {
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { setUserInfo } = useUserInfo();
   const [dob, setDob] = useState();
@@ -29,7 +30,7 @@ const Onboarding = () => {
       setLoading(true);
       router.push("/Login");
     }
-  });
+  }, [currentUser, router]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -83,33 +84,33 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="lg:h-screen lg:w-screen py-5 h-screen w-screen">
-      <h1 className="text-center text-4xl mt-10 mb-10 font-poppins">
-        Welcome to Our App!
-      </h1>
+    <div className="lg:h-screen lg:w-screen py-5 h-screen w-screen ">
+      <div className="flex items-center justify-center md:space-x-10 flex-col lg:flex-row space-y-7 mx-auto justify-items-center">
+        <h1 className="text-center text-4xl mt-10 mb-10 font-poppins font-bold">
+          Welcome to Our App!
+        </h1>
 
-      <div className="flex items-center justify-center md:space-x-10 flex-col lg:flex-row space-y-7 ">
         <form
-          className="flex flex-col xl:flex-row rounded-lg py-5 px-4 w-11/12 xl:w-1/2  shadow-lg border border-gray-900 font-poppins"
+          className="flex flex-col xl:flex-row rounded-lg py-5 px-4 w-11/12 xl:w-1/2  shadow-lg border border-gray-900 font-poppins "
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col  leading-[27px] items-center mx-auto ">
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className=" p-2 m-2  placeholder:font-poppins outline-none border border-gray-500 rounded-full lg:w-[calc(90% + 3rem)]"
               type="text"
               value={firstName}
               placeholder="First Name"
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900 p-2 m-2   placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className=" p-2 m-2   placeholder:font-poppins outline-none border border-gray-500 rounded-full"
               type="text"
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
             <input
-              className="border-b-2 border-b-gray-900  p-2 m-2  placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className="  p-2 m-2  placeholder:font-poppins outline-none border border-gray-500 rounded-full"
               type="text"
               placeholder="Bio"
               value={bio}
@@ -121,11 +122,11 @@ const Onboarding = () => {
               id=""
               value={dob}
               onChange={(e) => setDob(e.target.value)}
-              className="border border-gray-900 rounded-lg p-2 m-2 w-full placeholder:font-poppins outline-none focus:border-b-4 focus:border-b-gray-900"
+              className=" p-2 m-2 w-full placeholder:font-poppins outline-none border border-gray-500 rounded-full"
               placeholder="Date of Birth"
             />
 
-            <label className=" rounded-lg p-2 m-2 cursor-pointer text-center items-center flex justify-center w-full border-black border ">
+            <label className=" rounded-full p-2 m-2 cursor-pointer text-center items-center flex justify-center w-full border-black border ">
               <FaImage
                 className="
               text-xl mr-2
@@ -153,7 +154,7 @@ const Onboarding = () => {
             )}
 
             <button
-              className="bg-black text-white w-full rounded-lg p-2 m-2 font-poppins"
+              className="bg-black text-white w-full rounded-full p-2 m-2 font-poppins"
               type="submit"
             >
               Let&apos;s Go

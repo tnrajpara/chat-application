@@ -66,43 +66,45 @@ const Register = () => {
   };
 
   return (
-    <div className=" bg-white text-black h-screen w-screen justify-center items-center">
+    <div className=" bg-white/20 text-black h-screen w-screen justify-center items-center mx-auto flex aspect-video isolate">
       <form
-        className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black   border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
+        className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-1/4  w-full  lg:text-xl border border-black  rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
         onSubmit={handleSubmit}
       >
-        <img src="/register.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />
+        {/* <img src="/register.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" /> */}
         <div className="flex flex-col w-full">
-          <h1 className="text-5xl font-bold mb-10 font-poppins">Register</h1>
+          <h1 className="text-5xl font-bold mb-10 font-poppins text-center">
+            Register
+          </h1>
           <input
-            className="border border-black rounded-lg outline-none active:border active:border-gray-800 p-2 m-2 w-full placeholder:font-poppins"
+            className="border border-gray-500 rounded-full outline-none active:border active:border-gray-700 p-2 m-2 w-full "
             type="text"
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="border border-black rounded-lg p-2 m-2 ouline-none active:border active:border-gray-800 w-full placeholder:font-poppins"
+            className="border border-gray-500 rounded-full outline-none active:border active:border-gray-700 p-2 m-2 w-full "
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            className="border border-black rounded-lg p-2 m-2 outline-none active:border active:border-gray-800 w-full placeholder:font-poppins"
+            className="border border-gray-500 rounded-full outline-none active:border active:border-gray-700 p-2 m-2 w-full "
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button
-            className=" bg-black text-white rounded-lg p-2 m-2 w-full font-poppins"
+            className=" bg-black text-white rounded-full p-2 m-2 w-full font-poppins"
             type="submit"
           >
             Register
           </button>
           <button
-            className="flex font-poppins justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
+            className="flex font-poppins justify-center items-center rounded-full p-2 m-2 border border-black w-full"
             onClick={() => {
               signWithPop();
             }}

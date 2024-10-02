@@ -63,9 +63,9 @@ const Login = () => {
   };
   return (
     <div>
-      <div className=" bg-white text-black h-screen w-screen justify-center items-center">
+      <div className=" bg-white/20 text-black h-screen w-screen justify-center items-center flex isolate  aspect-video">
         <form
-          className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-4/5 w-full mx-auto lg:text-xl border border-black   border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
+          className="flex flex-col xl:flex-row items-center justify-center gap-10 lg:w-1/4 w-full mx-auto lg:text-xl border border-black   border-l-[1rem] border-l-gray-800 rounded-2xl px-10 py-4 mt-10  ml-3 mb-3  my-10"
           onSubmit={handleSubmit}
         >
           <img src="/login.jpeg" alt="" className="lg:h-1/2 lg:w-1/2" />
@@ -74,14 +74,14 @@ const Login = () => {
               Login
             </h1>
             <input
-              className=" rounded-lg p-2 m-2 w-full border border-black placeholder:font-poppins"
+              className=" border border-gray-500 rounded-full outline-none active:border active:border-gray-700 p-2 m-2 w-full "
               type="text"
               value={username}
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
-              className="rounded-lg p-2 m-2 w-full border border-black placeholder:font-poppins"
+              className="border border-gray-500 rounded-full outline-none active:border active:border-gray-700 p-2 m-2 w-full"
               type="password"
               placeholder="Password"
               value={password}
@@ -89,13 +89,13 @@ const Login = () => {
             />
 
             <button
-              className="font-poppins rounded-lg p-2 m-2 w-full text-center bg-black text-white"
+              className="font-poppins rounded-full p-2 m-2 w-full text-center bg-black text-white"
               type="submit"
             >
               Login
             </button>
             <button
-              className="flex font-poppins justify-center items-center rounded-lg p-2 m-2 border border-black w-full"
+              className="flex font-poppins justify-center items-center rounded-full p-2 m-2 border border-black w-full"
               onClick={() => {
                 signWithPop();
               }}
